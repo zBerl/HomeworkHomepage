@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Zachary Berling's Homework Homepage">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Arimo:wght@400;700&display=swap">
+  <script src="jQuery-v3.7.1.js"></script>
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="./soundEffects.css">
+
+  <title>Zachary Berling - Project 9</title>
+</head>
+<body>
+<header>
+    <nav>
+      <ul>
+        <li class="homeLink"><a href="./index.html">Home</a></li>
+        <li class="HomeworkLink"><a href="./SoundEffects.html">Sound Effects</a></li>
+        <li class="HomeworkLink"><a href="./uglyPlayer.html">UglyPlayer</a></li>
+        <li class="HomeworkLink"><a href="./project9.html">MultiProject9</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h1 class="logo">ZACHARY BERLING</h1>
+      <div class="center-container">
+      </div>
+    </div>
+</header>
+<main class="flex-containerp9">
+  <div class="flex-itemp9">
+      <h2>Project9</h2>
+      <img src="./AbstractImage.png" alt="Original Digital Artwork" id="leopard" style="display: none;"> 
+      <img src="./theMaze.png" alt="the Maze" id="theMaze" style="display: none;">
+      <p>Click the button for the intended result.</p>
+      <button onclick="sliceDiceResize()">Slice Dice Resize</button>
+      <button onclick="drawText()">Draw Text</button>
+      <button onclick="fillShapesWithPatterns()">Fill Shapes with 
+      Patterns</button>
+      <button onclick="interactiveShapes()">Interactive Shapes</button>
+      <button onclick="movingAnimation()">Animate Canvas</button>
+      <button onclick="mazeOnLoad()">Maze Game</button>
+      <button onclick="resetCanvas()">Reset Canvas</button>
+      <button onclick="findAllItems()">MazeGameDataDump</button>
+      <canvas id="canvas1" width="500" height="500"></canvas>
+      <ol id="itemList"></ol>
+      <style>
+        ol{
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+      </style>
+      <script>
+        // reset canvas
+        function resetCanvas() {
+          var c = document.getElementById("canvas1");
+          var context = c.getContext("2d");
+          context.clearRect(0, 0, c.width, c.height);
+          var itemList = document.getElementById("itemList");
+          itemList.innerHTML = "";
+        }
+        // Slicing Dicing and Resizing an Image
+        function sliceDiceResize() {
+          var c = document.getElementById("canvas1");
+          var context = c.getContext("2d");
+          var img = document.getElementById("leopard");
+          context.drawImage(img, 0, 0, 1400, 1900, 1, 1, 550, 550);
+        }
+        // Drawing Text
+        function drawText() {
+          var c = document.getElementById("canvas1");
+          var context = c.getContext("2d");
+          context.font = "30px fantasy";
+          context.fillStyle = "white";
+          context.fillText("Hello World", 10, 50);
+          
+        }
+// Filling Shapes with Patterns
+        function fillShapesWithPatterns() {
+        var c = document.getElementById("canvas1");
+        var context = c.getContext("2d");
+        var img = document.getElementById("leopard");
+        var pattern = context.createPattern(img, "repeat");
+        
+        context.fillStyle = pattern;
+        context.fillRect(100, 100, 100, 43);
+        context.fillRect(200, 200, 200, 100);
+
+        // gradient
+        var grd = context.createLinearGradient(0, 0, 150, 0);
+        grd.addColorStop(0, "orange");
+        grd.addColorStop(1, "white");
+        grd.addColorStop(0.5, "red");
+        grd.addColorStop(0.25, "yellow");
+        context.fillStyle = grd;
+        context.fillRect(10, 390, 250, 80);
+
+      function drawHeart(x, y, context) {
+        context.beginPath();
+        context.moveTo(x, y);
+        context.bezierCurveTo(x, y - 40, x - 45, y - 40, x - 48, y);
+        context.bezierCurveTo(x - 45, y + 30, x, y + 40, x, y + 80);
+        context.bezierCurveTo(x, y + 90, x + 45, y + 40, x + 45, y);
+        context.bezierCurveTo(x + 45, y - 30, x, y - 30, x, y);
+        context.closePath();
+      }
+        drawHeart(260, 50, context);  
+        context.fillStyle = pattern;
+        context.fill();
+        context.stroke();
+      }
+
+// making shapes interactive
+      function interactiveShapes(){
+          const c = document.getElementById("canvas1");
+          const context = c.getContext("2d");
+          const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "black", "white"];
+          const circles = []; 
+
+          function randomFromTo(from, to) {
+              return Math.floor(Math.random() * (to - from + 1) + from);
+          }
+
+          function drawCircle(x, y, radius, color, alpha=1) {
+              context.beginPath();
+              context.arc(x, y, radius, 0, 2 * Math.PI);
+              
+              context.fillStyle = color;
+              context.fill();
+              context.stroke();
+          }
+
+          for (let i = 0; i < 10; i++) {
+              const x = Math.floor(Math.random() * 500);
+              const y = Math.floor(Math.random() * 500);
+              const radius = randomFromTo(10,60);
+              const color = colors[Math.floor(Math.random() * colors.length)];
+              const alpha = Math.random();
+              
+              drawCircle(x, y, radius, color, alpha);
+              
+              circles.push({x, y, radius}); // Store the circle properties
+          }
+
+          c.addEventListener("click", function(e) {
+              const x = Math.floor(Math.random() * 500);
+              const y = Math.floor(Math.random() * 500);
+              const color = colors[Math.floor(Math.random() * colors.length)];
+              const radius = randomFromTo(10,60);
+              drawCircle(x, y, radius, color);
+              circles.push({x, y, radius});
+              // hit testing
+              for (let i = 0; i < circles.length; i++) {
+                  const circle = circles[i];
+                  const dx = e.offsetX - circle.x;
+                  const dy = e.offsetY - circle.y;
+                  if (dx * dx + dy * dy < circle.radius * circle.radius) {
+                      alert("You clicked a circle!");
+                  }
+              }
+          });
+        }
+
+// moving animation of ball using setTimeout()
+function movingAnimation() {
+    var c = document.getElementById("canvas1");
+    var context = c.getContext("2d");
+    var width = c.width;
+    var height = c.height;
+    var stop = false;
+
+    var balls = [];  // Array to store ball objects
+
+    for (var i = 0; i < 60; i++) {  // Create balls 
+        balls.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            dx: (Math.random() - 0.5) * 8, 
+            dy: (Math.random() - 0.5) * 8, 
+            radius: 10 + Math.random() * 30, 
+            color: "orange red blue green yellow purple pink black white".split(" ")[Math.floor(Math.random() * 9)]
+        });
+    }
+
+    function drawBalls() {
+        context.clearRect(0, 0, width, height);
+        
+        balls.forEach(function(ball) {
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // Check for collisions with the boundaries
+            if (ball.x < ball.radius || ball.x > width - ball.radius) {
+                ball.dx = -ball.dx;
+            }
+            if (ball.y < ball.radius || ball.y > height - ball.radius) {
+                ball.dy = -ball.dy;
+            }
+
+            context.beginPath();
+            context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2, true);
+            context.closePath();
+            context.fillStyle = ball.color;
+            context.fill();
+        });
+
+        if (!stop) {
+            setTimeout(drawBalls, 10);
+        }
+    }
+
+    drawBalls();
+
+    c.addEventListener("click", function() {
+        stop = true;
+    });
+    alert("Click the canvas to stop the animation then click Reset Canvas to Clear the Canvas");
+}
+
+// maze game
+function mazeOnLoad() {
+    alert("Use the WASD keys to move the red square. Try to reach the green circle to complete the maze.");
+
+    const canvas = document.getElementById('canvas1');
+    if (!canvas) {
+        console.error('Unable to find canvas element with id "Canvas1".');
+        return;
+    }
+
+    const context = canvas.getContext('2d');
+    if (!context) {
+        console.error('Unable to get 2D context for the canvas.');
+        return;
+    }
+
+    const player = {
+        x: 1,
+        y: 1,
+        size: 6,
+        color: 'red',
+        speed: 5
+    };
+
+    const goal = {
+        x: 100, // X position of the goal circle in the maze
+        y: 100, // Y position of the goal circle in the maze
+        size: 10, // Radius of the goal circle
+        color: 'green' // Color of the goal circle
+    };
+
+    const trail = [];
+
+    let mazeImg = new Image();
+    mazeImg.src = 'theMaze.png'; 
+
+    mazeImg.onload = function () {
+        context.drawImage(mazeImg, 0, 0, canvas.width, canvas.height);
+        drawPlayer();
+        drawGoal();
+    }
+
+    function drawGoal() {
+        context.fillStyle = goal.color;
+        context.beginPath();
+        context.arc(goal.x, goal.y, goal.size, 0, Math.PI * 2);
+        context.fill();
+    }
+
+    function drawPlayer() {
+        context.fillStyle = player.color;
+        context.fillRect(player.x, player.y, player.size, player.size);
+    }
+    
+    loadData();
+
+    function saveData() {
+        localStorage.setItem("playerX", player.x);
+        localStorage.setItem("playerY", player.y);
+    }
+
+    // Function to load the player's position from local storage
+    function loadData() {
+        const savedX = localStorage.getItem("playerX");
+        const savedY = localStorage.getItem("playerY");
+        if (savedX !== null && savedY !== null) {
+            player.x = parseInt(savedX, 10);
+            player.y = parseInt(savedY, 10);
+            drawPlayer(); 
+        }
+    }
+
+
+    function isCollision(x, y) {
+        const imgData = context.getImageData(x, y, player.size, player.size).data;
+        for (let i = 0; i < imgData.length; i += 4) {
+            if (imgData[i] === 0 && imgData[i + 1] === 0 && imgData[i + 2] === 0) { // Checking for black color 
+                return true; // Collision detected
+            }
+        }
+        return false;
+    }
+
+    function movePlayer(event) {
+        const previousX = player.x;
+        const previousY = player.y;
+
+        switch (event.keyCode) {
+            case 65: // A
+                player.x -= player.speed;
+                var audio = new Audio('https://www.soundjay.com/misc/paper-throw-1.mp3');
+                audio.play();
+                break;
+            case 87: // W
+                player.y -= player.speed;
+                var audio = new Audio('https://www.soundjay.com/misc/paper-throw-1.mp3');
+                audio.play();
+                break;
+            case 68: // D
+                player.x += player.speed;
+                var audio = new Audio('https://www.soundjay.com/misc/paper-throw-1.mp3');
+                audio.play();
+                break;
+            case 83: // S
+                player.y += player.speed;
+                var audio = new Audio('https://www.soundjay.com/misc/paper-throw-1.mp3');
+                audio.play();
+                break;
+            default:
+                return; 
+        }
+
+        if (isCollision(player.x, player.y) || player.x < 0 || player.y < 0 || 
+            player.x + player.size > canvas.width || player.y + player.size > canvas.height) {
+            player.x = previousX;
+            player.y = previousY; 
+            saveData();
+        } else if (Math.hypot(player.x - goal.x, player.y - goal.y) < goal.size) {
+            var audio = new Audio('https://www.soundjay.com/misc/dream-harp-06.mp3');
+            audio.play();
+            alert("Congratulations! You've completed the maze.");
+            trail.length = 0;
+            player.x = 1;
+            player.y = 1;
+            saveData();
+        }
+
+        trail.push({ x: player.x, y: player.y });
+
+        if (trail.length > 30) {
+            trail.shift();
+        }
+
+        context.clearRect(0, 0, canvas.width, canvas.height); 
+        context.drawImage(mazeImg, 0, 0, canvas.width, canvas.height); 
+        drawGoal(); 
+        drawPlayer(); 
+        drawTrail();
+    }
+
+    function drawTrail() {
+    context.strokeStyle = 'rgba(0, 0, 255, 0.3)'; // Light blue with opacity
+    context.lineWidth = 3; // Adjust the width as needed
+
+    for (let i = 1; i < trail.length; i++) {
+        const startPoint = trail[i - 1];
+        const endPoint = trail[i];
+
+        context.beginPath();
+
+        // Calculate the center of the player
+        const centerX = startPoint.x + player.size / 2;
+        const centerY = startPoint.y + player.size / 2;
+
+        // Calculate the direction of movement
+        const dx = endPoint.x - startPoint.x;
+        const dy = endPoint.y - startPoint.y;
+
+        // Calculate the endpoints for the trail line
+        const trailStartX = centerX - dx;
+        const trailStartY = centerY - dy;
+        const trailEndX = centerX + dx;
+        const trailEndY = centerY + dy;
+
+        context.moveTo(trailStartX, trailStartY);
+        context.lineTo(trailEndX, trailEndY);
+        context.stroke();
+    }
+}
+
+// Game Music
+var audio = new Audio('https://www.soundjay.com/free-music/cautious-path-01.mp3');
+audio.play();
+
+
+    document.addEventListener('keydown', movePlayer);
+}
+
+function findAllItems() {
+  var itemList = document.getElementById("itemList");
+  itemList.innerHTML = "";
+
+  for (var i=0; i<localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var item = localStorage.getItem(key);
+
+    var newItem = document.createElement("li");
+    newItem.innerHTML = key + ": " + item;
+    itemList.appendChild(newItem);
+  }
+}
+      </script>
+  </div>
+</main>
+<footer>
+  <p>Zachary Berling - Advanced HTML Web Development - CIS-258-FALL 2023</p>
+</footer>

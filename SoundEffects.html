@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Zachary Berling's Homework Homepage">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Arimo:wght@400;700&display=swap">
+  <script src="jQuery-v3.7.1.js"></script>
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+  <script src="./soundEffects.js"></script>
+  <link rel="stylesheet" href="./soundEffects.css">
+  <title>Zachary Berling - SoundEffects</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li class="homeLink"><a href="./index.html">Home</a></li>
+        <li class="HomeworkLink"><a href="./SoundEffects.html">Sound Effects</a></li>
+        <li class="HomeworkLink"><a href="./uglyPlayer.html">UglyPlayer</a></li>
+        <li class="HomeworkLink"><a href="./project9.html">MultiProject9</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h1 class="logo">ZACHARY BERLING</h1>
+      <div class="center-container">
+      </div>
+    </div>
+  </header>
+  <main>
+    <article>
+      <section>
+          <audio id="audio1">
+            <source src="./effects/boing1.wav" type="audio/wav">
+            <source src="./effects/beep.mp3" type="audio/mp3">
+          </audio>
+          <audio id="audio2">
+            <source src="./effects/boing2.wav" type="audio/wav">
+            <source src="./effects/beep.mp3" type="audio/mp3">
+          </audio>
+          <audio id="audio3">
+            <source src="./effects/boing3.wav" type="audio/wav">
+            <source src="./effects/beep.mp3" type="audio/mp3">
+          </audio>
+          
+          <audio id="backgroundMusic" loop>
+            <source src="./effects/TheMumbaiBeat-HanuDixit.mp3" type="audio/mp3">
+          </audio>
+          
+            <canvas id="canvas" width="800" height="400">
+            </canvas>
+          
+            <div>
+              <button onclick="addBall()">Add Ball</button>
+              <button onclick="clearBalls()">Clear Canvas</button>
+            </div>
+            <div>
+              Ball Size:<input id="ballSize" type="number" min="0" max="50" value="15">
+              <input id="connectedBalls" type="checkbox">Connect Balls<br>    
+            </div>
+          
+            <p><small>Background music by Hanu Dixit (<a href="https://www.youtube.com/watch?v=I0K1Q4fcneg" target="_blank">HanuDixit</a>)</small></p>
+      </section>
+    </article>
+  </main>
+  <footer>
+    <p>Zachary Berling - Advanced HTML Web Development - CIS-258-FALL 2023</p>
+  </footer>

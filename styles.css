@@ -1,0 +1,357 @@
+/* General Styling */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arimo', sans-serif;
+  font-weight: 400; 
+  background: url('./img/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+h1, h2, h3 {
+  font-family: 'Lobster', cursive;
+}
+
+p, li, a {
+  font-family: 'Arimo', sans-serif;
+}
+
+/* Container for both Logo and Navigation */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%; /* Some padding on the sides, but it's optional */
+}
+
+/* Logo Styling */
+.logo {
+  font-family: 'Lobster', cursive;
+  font-size: 2.5em;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  padding: 2% 4%;
+  margin: 0; /* Removing the auto margin */
+  background: linear-gradient(to bottom, rgba(255, 223, 186, 0.7), rgba(243, 190, 137, 0.7));
+  border: 3px solid rgba(255, 208, 162, 0.8);
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 40%; /* changed width to max-width */
+}
+
+.logo:hover {
+  color: #e9894e;
+}
+
+/* Navigation Styling */
+nav {
+  /* The float property is not needed when using flexbox */
+}
+
+nav a {
+  color: #000000;
+}
+
+nav a:hover {
+  color: #eda933;
+}
+
+/* Main Content Styling */
+main {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Homework Assignments */
+.container {
+  display: flex;
+}
+
+.homeworkLeft, .homeworkRight {
+  box-sizing: border-box;
+  border-radius: 25px;
+  padding: 30px 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 1%;
+  font-size: 0.75rem;
+  background: linear-gradient(to bottom, rgba(255, 223, 186, 0.7), rgba(243, 190, 137, 0.7));
+  border: 3px solid rgba(0, 0, 0, 0.8);
+  margin: 2%;
+}
+
+.homeworkLeft {
+  flex: 1;
+  width: calc(33.7% - 5%);
+}
+
+.homeworkRight {
+  flex: 2;
+  width: calc(60% - 3%);
+}
+
+/* Footer Styling */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+}
+
+footer a:hover {
+  color: #0077cc;
+}
+
+/* Navigation styling */
+nav {
+  padding-top: 20px;
+  float: right;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none; 
+  color: #000000;
+  transition: color 0.3s ease; 
+}
+
+
+/* Welcome Homework Homepage Styling */
+.center-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.logoHeadline{
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 0, 0, 0.8);
+  border-radius: 1%;
+  padding: 15px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px auto 0 auto;
+  font-size: 1.5rem;
+  margin-top: 50px;
+}
+
+/* Footer styling */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  opacity: 0.91;
+}
+
+/* Responsive Design Multiple Screen Sizes Below 600px, 384px,309px, 184px */
+@media (max-width: 690px) {
+  .logo {
+    font-size: 2.2rem;
+    padding: 2% 2%;
+    text-align: center;
+  }
+  
+  nav {
+    float: none;
+    text-align: center;
+  }
+
+  /* Header and Navigation */
+  .logo {
+    font-size: 2.2rem;
+    padding: 2% 2%;
+    text-align: center;
+    height: 20px;
+    width: 100%;
+    
+  }
+
+  header {
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  nav {
+    float: none;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  nav ul {
+    padding: 0;
+  }
+
+  nav li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+  .homeworkRight {
+    font-size: 0.5rem;
+  }
+
+  /* Main Content */
+  main {
+    width: 90%;
+    padding: 20px 0;
+    max-width: 100%;
+  }
+
+  /* Footer */
+  footer {
+    padding: 5px 0;
+    font-size: 12px;
+  }
+
+  .logoHeadline{
+    font-size: 1rem;
+    padding: 1rem;
+    margin-top: .5rem;
+  }
+
+  /* Hide certain elements */
+ .HomeworkLink, .homeLink {
+    display: none;
+  }
+}
+
+/* Directed @Media 384px maybe indicator that screen is too small */
+
+@media (max-width: 500px){
+  .logoHeadline{
+   font: .1em;
+   margin: 10%;
+  }
+  .logo{
+    font: .1em;
+  }
+  .homeworkRight {
+    font-size: 0.5rem;
+  }
+  .homeworkLeft {
+    font-size: 0.5rem;
+  }
+}
+
+/* Directed @Media 384px maybe indicator that screen is too small */
+
+@media (max-width: 384px) {
+  .homeworkRight {
+    font-size: 0.60rem;
+    background-color: red;
+  }
+
+  .logo {
+    font: 0.8em Lobster;
+  }
+
+  .logoHeadline {
+    margin: 5%;
+  }
+
+  table, thead, tbody, tr {
+    display: block;
+    width: 100%;
+  }
+
+  .homeworkLeft, .homeworkRight {
+    display: block;
+    width: 100%;
+    margin-top: 10%;
+  }
+}
+
+
+
+/* UglyPlayer */
+
+video {
+  border: double 8px lightgray;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  display: block;
+}
+
+.titleUP{
+  padding-top: 9em;
+}
+
+.videoContainer {
+  max-width: 445px;
+  padding-top: 6em;
+}
+
+#positionBar {
+height: 30px;
+  color: white;
+  font-weight: bold;
+  background: steelblue;
+  text-align: center;
+}
+
+#positionBar span {
+  display: inline-block;
+  margin-top: 7px;
+}
+
+#durationBar {
+  border: solid 1px black;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#bufferBar {
+  background: lightsteelblue;
+  position: absolute;
+}
+
+/* Project 9 styling */
+.flex-containerp9 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 3em;
+  padding-bottom: 90px;
+  gap: 40px;
+}
+
+.flex-itemp9 {
+  flex: 0 0 calc(50% - 20px); /* This means each box will take up 50% of the container's width minus 20px for spacing */
+  margin: 10px;
+  box-sizing: border-box;
+}

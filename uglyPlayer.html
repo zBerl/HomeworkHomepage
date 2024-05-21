@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Zachary Berling's Homework Homepage">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Arimo:wght@400;700&display=swap">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+  <script src="uglyPlayer.js"></script>
+  <title>Zachary Berling - UglyPlayer</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li class="homeLink"><a href="./index.html">Home</a></li>
+        <li class="HomeworkLink"><a href="./SoundEffects.html">Sound Effects</a></li>
+        <li class="HomeworkLink"><a href="./uglyPlayer.html">UglyPlayer</a></li>
+        <li class="HomeworkLink"><a href="./project9.html">MultiProject9</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h1 class="logo">ZACHARY BERLING</h1>
+      <div class="center-container">
+      </div>
+    </div>
+  </header>
+  <main>
+    <article>
+      <section>
+        <h1 class="titleUP">World's Ugliest Video Player</h1>
+        <div class="videoContainer">
+          <video id="videoPlayer" controls ontimeupdate="progressUpdate()">
+            <source src="./effects/butterfly.mp4" type="video/mp4">
+            <source src="./effects/butterfly.webm" type="video/webm">
+            <track kind="captions" src="./effects/butterfly.vtt" srclang="en" label="English" default>
+            <track kind="captions" src="./effects/butterfly_fr.vtt" srclang="fr" label="French">
+          </video>
+        </div>
+        
+        <div class="barContainer">
+          <div id="durationBar">
+            <div id="positionBar"><span id="displayStatus">Idle.</span></div>
+          </div>
+        </div>
+        
+          <div>
+        &nbsp;&nbsp;&nbsp;
+            <button onclick="play()">Play</button>
+            <button onclick="pause()">Pause</button>
+            <button onclick="stop()">Stop</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button onclick="speedUp()">Fast</button>
+            <button onclick="slowDown()">Slow</button>
+            <button onclick="normalSpeed()">Normal Speed</button>
+            <button onclick="mute()">Mute</button>
+            <button onclick="unmute()">Unmute</button>
+            <button onclick="rewind()">Rewind</button>
+            <button onclick="forward()">Forward</button>
+            <button onclick="TheaterMode()">Theater Mode</button>
+            <button onclick="normalMode()">Normal Mode</button>
+          </div>
+      </section>
+      <section>
+        <article>
+            <h2>UglyPlayer Changes Made:</h2>
+            <ul>
+            <li><h5>Mute & Unmute added</h5></li>
+            <li><h5>added control to the video</h5></li>
+            <li><h5>Added English Captions(Hover over video select captions)</h5></li>
+            <li><h5>Added French Captions(Hover over video select captions)</h5></li>
+            <li><h5>Rewind Video</h5></li>
+            <li><h5>Fast Forward Video</h5></li>
+            <li><h5>Theater Mode</h5></li>
+            <li><h5>Normal Mode</h5></li>
+          </ul>
+        </article>
+      </section>
+    </article>
+  </main>
+  <footer>
+    <p>Zachary Berling - Advanced HTML Web Development - CIS-258-FALL 2023</p>
+  </footer>

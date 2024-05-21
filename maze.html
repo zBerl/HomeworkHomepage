@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas1" width="500px" height="500px">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+  <script>
+window.onload = mazeOnLoad;
+
+function mazeOnLoad() {
+    alert("Use the WASD keys to move the red square. Try to reach the green circle to complete the maze without touching the walls.");
+
+    const canvas = document.getElementById('canvas1');
+    if (!canvas) {
+        console.error('Unable to find canvas element with id "Canvas1".');
+        return;
+    }
+
+    const context = canvas.getContext('2d');
+    if (!context) {
+        console.error('Unable to get 2D context for the canvas.');
+        return;
+    }
+
+    const player = {
+        x: 1,
+        y: 1,
+        size: 6,
+        color: 'red',
+        speed: 5
+    };
+
+    const goal = {
+        x: 100, // X position of the goal circle in the maze
+        y: 100, // Y position of the goal circle in the maze
+        size: 10, // Radius of the goal circle
+        color: 'green' // Color of the goal circle
+    };
+
+    let mazeImg = new Image();
+    mazeImg.src = 'theMaze.png'; 
+
+    mazeImg.onload = function () {
+        context.drawImage(mazeImg, 0, 0, canvas.width, canvas.height);
+        drawPlayer();
+        drawGoal();
+    }
+
+    function drawGoal() {
+        context.fillStyle = goal.color;
+        context.beginPath();
+        context.arc(goal.x, goal.y, goal.size, 0, Math.PI * 2);
+        context.fill();
+    }
+
+    function drawPlayer() {
+        context.fillStyle = player.color;
+        context.fillRect(player.x, player.y, player.size, player.size);
+    }
+
+    loadData();
+
+    function saveData() {
+        localStorage.setItem("playerX", player.x);
+        localStorage.setItem("playerY", player.y);
+    }
+
+    // Function to load the player's position from local storage
+    function loadData() {
+        const savedX = localStorage.getItem("playerX");
+        const savedY = localStorage.getItem("playerY");
+        if (savedX !== null && savedY !== null) {
+            player.x = parseInt(savedX, 10);
+            player.y = parseInt(savedY, 10);
+            drawPlayer(); // Draw the player in the loaded position
+        }
+    }
+
+
+    function isCollision(x, y) {
+        const imgData = context.getImageData(x, y, player.size, player.size).data;
+        for (let i = 0; i < imgData.length; i += 4) {
+            if (imgData[i] === 0 && imgData[i + 1] === 0 && imgData[i + 2] === 0) { // Checking for black color
+                return true; // Collision detected
+            }
+        }
+        return false;
+    }
+
+    function movePlayer(event) {
+        const previousX = player.x;
+        const previousY = player.y;
+
+        switch (event.keyCode) {
+            case 65: // A
+                player.x -= player.speed;
+                break;
+            case 87: // W
+                player.y -= player.speed;
+                break;
+            case 68: // D
+                player.x += player.speed;
+                break;
+            case 83: // S
+                player.y += player.speed;
+                break;
+            default:
+                return; 
+        }
+
+        if (isCollision(player.x, player.y) || player.x < 0 || player.y < 0 || 
+            player.x + player.size > canvas.width || player.y + player.size > canvas.height) {
+            player.x = previousX;
+            player.y = previousY; 
+            saveData();
+        } else if (Math.hypot(player.x - goal.x, player.y - goal.y) < goal.size) {
+            alert("Congratulations! You've completed the maze.");
+        }
+
+        context.clearRect(0, 0, canvas.width, canvas.height); 
+        context.drawImage(mazeImg, 0, 0, canvas.width, canvas.height); 
+        drawGoal(); 
+        drawPlayer(); 
+    }
+
+    document.addEventListener('keydown', movePlayer);
+}
+  </script>
+</body>
+</html>

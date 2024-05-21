@@ -1,0 +1,62 @@
+
+body {
+  font-family: Arial, sans-serif; 
+}
+
+h4 {
+  text-align: center;
+}
+
+/* CSS SELECTORS */
+ol li::before {
+  content: "State of ";
+}
+
+ol li:nth-child(odd) {
+  background-color: #7dd98c; 
+}
+
+ol li:nth-child(even) {
+  background-color: rgb(139, 175, 136); 
+  font-weight: bold; 
+}
+
+.container {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: rgba(92, 162, 30, 0.818);
+}
+
+/* @media */
+@media (max-width: 1000px) {
+  ol li:nth-child(odd) { background-color: #1616d3; }
+}
+
+@media (max-width: 900px) {
+  ol li:nth-child(odd) { background-color: #20dad4; } 
+}
+
+@media (max-width: 800px) {
+  ol li:nth-child(odd) { background-color: rgb(136, 20, 190); } 
+}
+
+@media (max-width: 700px) {
+  ol li:nth-child(odd) { background-color: #eded20; } 
+}
+
+
+/* additional selector #1 */
+.row h4:only-of-type {
+  background-color: #f0f8ff; 
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* additional selector #2 */
+ol li:hover {
+  background-color: rgba(240, 240, 217, 0.621);
+  cursor: pointer; 
+}
